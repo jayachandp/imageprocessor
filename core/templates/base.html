@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Image Processor </title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</head>
+<body class="nav-md">
+<div class="container body">
+<div class="container-fluid">
+    <div class="row" style="padding-top:50px">
+    <div class="control-label col-md-2 col-sm-2 col-xs-12"></div>
+    <form class="form-inline" action='{% url "core:process_image" %}' method="post" , enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="images">
+                Upload an Image
+            </label>
+
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="file" name="image">
+            </div>
+            <!--
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="input-group">
+                    <label class="input-group-btn">
+                        <span class="btn btn-primary">
+                            Browse <i class="fa fa-folder-open-o" aria-hidden="true"></i>
+                            <input id="my-file-selector" type="file" style="display:none;">
+                        </span>
+                    </label>
+                    <input type="text" class="form-control" id="upload-file-info" readonly>
+                </div>
+            </div>
+            -->
+            <div class="col-md-3 .col-md-offset-2">
+            <!--
+                {% if form.image.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>{% for error in form.image.errors %} {{ error }} {% endfor %}</strong>
+                    </div>
+                {% endif %}
+            -->
+            {{ form.image.errors }}
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success" value="SUBMIT"> Submit </button>
+    </form>
+    {% block content %} {% endblock %}
+    </div>
+</div> <!-- container-fluid -->
+</div> <!-- container body -->
+</body>
+</html>
